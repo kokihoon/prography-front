@@ -1,14 +1,11 @@
 import React, { useEffect, useReducer } from 'react';
 import './App.css';
-import List from './List';
 import useFetch from './useFetch';
-import Header from './Header';
-import Form from './Form';
 import {todoReducer} from './reducers';
 
 export const TodoContext = React.createContext();
 
-const TodoStore = () => {
+const TodoStore = (props) => {
 
   const [todos, dispatch] = useReducer(todoReducer, []);
 
@@ -24,9 +21,7 @@ const TodoStore = () => {
 
   return (
     <TodoContext.Provider value={{todos, loading, dispatch}}>
-      <Header/>
-      <Form/>
-      <List/>
+      {props.children}
     </TodoContext.Provider>
   )
 }

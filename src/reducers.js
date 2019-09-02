@@ -13,9 +13,12 @@ export const todoReducer = (todos, {type, payload}) => {
             else todo.status = "complete";
           }
     
-          return todo
+          return todo;
         });
-  
+        
+      case "REMOVE_TODO":
+          return todos.filter(todo => todo.id !== +payload);
+          
       default:
         break;
   
