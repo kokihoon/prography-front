@@ -1,11 +1,14 @@
 import React, {useState, useEffect } from 'react';
 import './App.css';
 import List from './List';
+import useFetch from './useFetch';
 
 const App = () => {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState();
-  const [loading, setLoading] = useState(false);
+
+  const loading = useFetch(setTodos, 'https://killsanghyuck.github.io/prography_5th_front/todoDummy.json');
+
 
   const changeInputData = (e) => {
     setNewTodo(e.target.value);
@@ -13,25 +16,12 @@ const App = () => {
 
   const addTodo = (e) => {
     e.preventDefault();
-    setTodos([...todos, newTodo])
+    setTodos([...todos, {'title':newTodo, 'id':todos.length, 'status':'todo'}])
   }
 
   useEffect( () => {
     console.log("새로운 내용이 렌더링 됐네요.")
   }, [todos])
-
-  const fetchInitalData = async () => {
-    setLoading(true);
-    const response = await fetch('https://killsanghyuck.github.io/prography_5th_front/todoDummy.json');
-    const initalData = await response.json();
-    console.log(initalData.body);
-    setTodos(initalData.body);
-    setLoading(false);
-  }
-
-  useEffect( () => {
-    fetchInitalData();
-  }, []);
 
   return (
     <div>
