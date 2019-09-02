@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {TodoContext} from './TodoStore';
 
-const Form = ({addTodo, changeInputData}) => {
+const Form = () => {
+    const {addTodo, changeInputData} = useContext(TodoContext);
+
     return (
         <>
             <form action="">
@@ -10,3 +13,5 @@ const Form = ({addTodo, changeInputData}) => {
         </>
     )
 }
+
+export default Form;

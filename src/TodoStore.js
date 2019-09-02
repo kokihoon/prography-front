@@ -5,7 +5,9 @@ import useFetch from './useFetch';
 import Header from './Header';
 import Form from './Form';
 
-const App = () => {
+export const TodoContext = React.createContext();
+
+const TodoStore = () => {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState();
 
@@ -25,7 +27,7 @@ const App = () => {
   const changeTodoStatus = (id) => {
     const updateTodos = todos.map(todo => {
       if(todo.id === +id) {
-        if(todo.status == "complete") todo.status = "todo";
+        if(todo.status === "complete") todo.status = "todo";
         else todo.status = "complete";
       }
 
@@ -41,12 +43,12 @@ const App = () => {
   }, [todos])
 
   return (
-    <div>
-      <Header todos={todos}/>
-      <Form addTodo={addTodo} changeInputData={changeInputData}/>
-      <List todos={todos} loading={loading} changeTodoStatus={changeTodoStatus}/>
-    </div>
+    <TodoContext.Provider value={{todos, addTodo, changeInputData, loading, changeTodoStatus}}>
+      <Header/>
+      <Form/>
+      <List/>
+    </TodoContext.Provider>
   )
 }
 
-export default App;
+export default TodoStore;
