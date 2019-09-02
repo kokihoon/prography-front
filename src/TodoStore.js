@@ -1,42 +1,29 @@
-import React, {useState, useEffect } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import './App.css';
 import List from './List';
 import useFetch from './useFetch';
 import Header from './Header';
 import Form from './Form';
+import {todoReducer} from './reducers';
 
 export const TodoContext = React.createContext();
 
 const TodoStore = () => {
-  const [todos, setTodos] = useState([]);
 
-  const loading = useFetch(setTodos, 'https://killsanghyuck.github.io/prography_5th_front/todoDummy.json');
+  const [todos, dispatch] = useReducer(todoReducer, []);
 
-  const addTodo = (newTodo) => {
-    setTodos([...todos, {'title':newTodo, 'id':todos.length+1, 'status':'todo'}])
-    console.log(todos)
+  const setInitData = (initData) => {
+    dispatch({type:"SET_INIT_DATA", payload:initData});
   }
 
-  const changeTodoStatus = (id) => {
-    const updateTodos = todos.map(todo => {
-      if(todo.id === +id) {
-        if(todo.status === "complete") todo.status = "todo";
-        else todo.status = "complete";
-      }
-
-      return todo;
-
-    });
-
-    setTodos(updateTodos);
-  }
+  const loading = useFetch(setInitData, 'https://killsanghyuck.github.io/prography_5th_front/todoDummy.json');
 
   useEffect( () => {
     console.log("새로운 내용이 렌더링 됐네요.")
   }, [todos])
 
   return (
-    <TodoContext.Provider value={{todos, addTodo, loading, changeTodoStatus}}>
+    <TodoContext.Provider value={{todos, loading, dispatch}}>
       <Header/>
       <Form/>
       <List/>
