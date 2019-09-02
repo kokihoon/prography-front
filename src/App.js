@@ -3,7 +3,7 @@ import './App.css';
 import List from './List';
 
 const App = () => {
-  const [todos, setTodos] = useState(['js 공부']);
+  const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState();
 
   const changeInputData = (e) => {
@@ -18,6 +18,17 @@ const App = () => {
   useEffect( () => {
     console.log("새로운 내용이 렌더링 됐네요.")
   }, [todos])
+
+  const fetchInitalData = async () => {
+    const response = await fetch('https://killsanghyuck.github.io/prography_5th_front/todoDummy.json');
+    const initalData = await response.json();
+    console.log(initalData.body);
+    setTodos(initalData.body);
+  }
+
+  useEffect( () => {
+    fetchInitalData();
+  }, []);
 
   return (
     <div>
