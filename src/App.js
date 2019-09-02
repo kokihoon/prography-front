@@ -5,6 +5,7 @@ import List from './List';
 const App = () => {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState();
+  const [loading, setLoading] = useState(false);
 
   const changeInputData = (e) => {
     setNewTodo(e.target.value);
@@ -20,10 +21,12 @@ const App = () => {
   }, [todos])
 
   const fetchInitalData = async () => {
+    setLoading(true);
     const response = await fetch('https://killsanghyuck.github.io/prography_5th_front/todoDummy.json');
     const initalData = await response.json();
     console.log(initalData.body);
     setTodos(initalData.body);
+    setLoading(false);
   }
 
   useEffect( () => {
@@ -38,7 +41,7 @@ const App = () => {
         <button onClick={addTodo}>할일추가</button>
       </form>
 
-      <List todos={todos}/>
+      <List todos={todos} loading={loading}/>
     </div>
   )
 }
