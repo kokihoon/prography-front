@@ -1,5 +1,6 @@
 import React, {useContext, useRef} from 'react';
 import {TodoContext} from './TodoStore';
+import './Form.css';
 
 const Form = () => {
     const inputRef = useRef(false);
@@ -12,9 +13,9 @@ const Form = () => {
     }
     return (
         <>
-            <form action="">
+            <form action="" className="todo-input">
                 <input type="text" ref={inputRef} />
-                <button onClick={addTodoData}>할일 추가</button>
+                <button onClick={addTodoData}>추가</button>
             </form>
         </>
     )

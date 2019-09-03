@@ -17,21 +17,22 @@ const Item = ({todo}) => {
     const itemClassName = todo.status === 'complete' ? 'complete' : '';
     
     return (
-        <>
-        <li 
-            data-id={todo.id}
-            onClick={toggleItem}
-            className={itemClassName}
-        >
-            {todo.title} 
-        </li>
-        <span
-            data-id={todo.id}
-            onClick={removeItem}
-        >
-            X
-        </span>
-        </>
+        <div className="item">
+            <div
+                data-id={todo.id}
+                onClick={toggleItem}
+                className={itemClassName}
+            >
+                {todo.title} 
+            </div>
+            <div
+                data-id={todo.id}
+                onClick={removeItem}
+                className="remove"
+            >
+                X
+            </div>
+        </div>
     )
 }
 

@@ -1,4 +1,32 @@
 .complete {
     text-decoration: line-through;
-    font-style:italic;
+    color: #adb5bd;
+    font-weight: 600;
 }
+
+.item {
+    padding: 1rem;
+    display: flex;
+    align-items: center; /* 세로 가운데 정렬 */
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+    
+
+}
+
+.item:hover {
+    background: #e3fafc;
+}
+
+.item + .item {
+border-top: 1px solid #f1f3f5;
+}
+  
+.remove {
+
+    margin-left: 1rem;
+    color: #e64980;
+    font-weight: 600;
+  }
+  

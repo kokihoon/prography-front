@@ -5,14 +5,17 @@ import { TodoContext } from './TodoStore';
 const List = () => {
 
     const {todos, loading} = useContext(TodoContext);
-
-    let todoList = <div>loading...</div>
+    
+    let todoList = <div>loading...</div>;
 
     if(!loading) todoList = todos.map( (todo) => <Item key={todo.id} todo={todo}/>);
+
     return (
-        <ul>
-            {todoList}
-        </ul>
+        <>
+            <div>
+                {todoList}
+            </div>
+        </>
     )
 }
 

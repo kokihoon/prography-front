@@ -12,7 +12,7 @@ const TodoStore = (props) => {
   const setInitData = (initData) => {
     dispatch({type:"SET_INIT_DATA", payload:initData});
   }
-
+  
   const loading = useFetch(setInitData, 'https://killsanghyuck.github.io/prography_5th_front/todoDummy.json');
 
   useEffect( () => {

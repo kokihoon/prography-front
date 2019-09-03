@@ -18,7 +18,12 @@ export const todoReducer = (todos, {type, payload}) => {
         
       case "REMOVE_TODO":
           return todos.filter(todo => todo.id !== +payload);
-          
+
+      case "TOGGLE_STATUS": {
+         console.log(payload);
+          return !payload;
+      }
+
       default:
         break;
   

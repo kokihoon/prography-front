@@ -1,3 +1,13 @@
-.countInfo {
-    margin-bottom : 1rem;
-}
+.header{
+    padding: 2rem;
+    font-size: 2.5rem;
+    text-align: center;
+    font-weight: 100;
+    background: #22b8cf;;
+    color: white;
+  }
+
+  .countInfo {
+      text-align: right;
+      font-size:1.5rem;
+  }

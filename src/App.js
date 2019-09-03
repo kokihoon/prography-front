@@ -8,7 +8,7 @@ import './App.css';
 const App = () => {
     return (
         <TodoStore>
-            <Header/>
+            <Header className="header"/>
             <Form/>
             <List/>
         </TodoStore>
